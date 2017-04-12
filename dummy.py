@@ -27,6 +27,8 @@ def fcfs():
 	f = Frame(root).pack()
 	Label(f,text = "\nFirst Come First Serve\n",font = ('Helveltika bold',12)).pack()
 	Label(f,text = "Arrival Time:  "+ str(arrivalTime)).pack(anchor = W)
+	Label(f,text = "Process:  "+ str(process)).pack(anchor = W)
+	Label(f,text = "Burst Time:  "+ str(execTime)).pack(anchor = W)
 	for i in range(n):
 		for j in range(i,n):
 			if arrivalTime[i] > arrivalTime[j]:
@@ -43,7 +45,8 @@ def fcfs():
 	burstTime.append(execTime[0]+arrivalTime[0])
 	for i in range(1,n):
 		burstTime.append(execTime[i]+burstTime[i-1])
-	Label(f,text = "\n----- Revised -----\n").pack(anchor = W)
+	Label(f,text = "\n----- After Performing First Come First Serve Scheduling Algorithm -----\n").pack(anchor = W)
+	Label(f,text = "Arrival Time:  "+ str(arrivalTime)).pack(anchor = W)
 	Label(f,text = "Process:  "+ str(process)).pack(anchor = W)
 	Label(f,text = "Burst Time:  "+ str(execTime)).pack(anchor = W)
 	Label(f,text = "Turn Around Time:  "+ str(burstTime)).pack(anchor = W)
@@ -59,6 +62,7 @@ def sjn():
 	Label(f,text = "\nShortest Job First\n",font = ('Helveltika bold',12)).pack()
 	Label(f,text = "Arrival Time:  "+ str(arrivalTime)).pack(anchor = W)
 	Label(f,text = "Run Time:  "+ str(execTime)).pack(anchor = W)
+	Label(f,text = "Process:  "+ str(process)).pack(anchor = W)
 	for i in range(n):
 		for j in range(i,n):
 			if execTime[i] > execTime[j]:
@@ -75,9 +79,11 @@ def sjn():
 	burstTime.append(execTime[0]+arrivalTime[0])
 	for i in range(1,n):
 		burstTime.append(execTime[i]+burstTime[i-1])
-	Label(f,text = "\n----- Revised -----\n").pack(anchor = W)
+	Label(f,text = "\n----- After Performing Shortest Job Next Scheduling Algorithm -----\n").pack(anchor = W)
+	Label(f,text = "Arrival Time:  "+ str(arrivalTime)).pack(anchor = W)
+	Label(f,text = "Run Time:  "+ str(execTime)).pack(anchor = W)
 	Label(f,text = "Process:  "+ str(process)).pack(anchor = W)
-	Label(f,text = "Burst Time:  "+ str(execTime)).pack(anchor = W)
+	# Label(f,text = "Burst Time:  "+ str(execTime)).pack(anchor = W)
 	Label(f,text = "Turn Around Time:  "+ str(burstTime)).pack(anchor = W)
 	destroy.pack()
 
@@ -91,8 +97,10 @@ def pbs():
 	f = Frame(root).pack()
 	Label(f,text = "\nPriority Based Scheduling\n",font = ('Helveltika bold',12)).pack()
 	Label(f,text = "Arrival Time:  "+ str(arrivalTime)).pack(anchor = W)
+	Label(f,text = "Process:  "+ str(process)).pack(anchor = W)
 	Label(f,text = "Priority:  "+ str(priority)).pack(anchor = W)
 	Label(f,text = "Run Time:  "+ str(execTime)).pack(anchor = W)
+	
 	for i in range(n):
 		for j in range(i,n):
 			if priority[i] < priority[j]:
@@ -112,10 +120,12 @@ def pbs():
 	burstTime.append(execTime[0]+arrivalTime[0])
 	for i in range(1,n):
 		burstTime.append(execTime[i]+burstTime[i-1])
-	Label(f,text = "\n----- Revised -----\n").pack(anchor = W)
+	Label(f,text = "\n----- After Performing Priority based Scheduling Algorithm -----\n").pack(anchor = W)
 	Label(f,text = "Arrival Time:  "+ str(arrivalTime)).pack(anchor = W)
+	Label(f,text = "Process:  "+ str(process)).pack(anchor = W)
+	Label(f,text = "Run Time:  "+ str(execTime)).pack(anchor = W)
 	Label(f,text = "Priority:  "+ str(priority)).pack(anchor = W)
-	Label(f,text = "Burst Time:  "+ str(burstTime)).pack(anchor = W)
+	Label(f,text = "Turn around Time:  "+ str(burstTime)).pack(anchor = W)
 
 	destroy.pack()
 
@@ -128,6 +138,7 @@ def srt():
 	f = Frame(root).pack()
 	Label(f,text = "\nShortest Run Time Next\n",font = ('Helveltika bold',12)).pack()
 	Label(f,text = "Arrival Time:  "+ str(arrivalTime)).pack(anchor = W)
+	Label(f,text = "Process:  "+ str(process)).pack(anchor = W)
 	Label(f,text = "Run Time:  "+ str(execTime)).pack(anchor = W)
 	for i in range(n):
 		for j in range(i,n):
@@ -145,9 +156,11 @@ def srt():
 	burstTime.append(execTime[0]+arrivalTime[0])
 	for i in range(1,n):
 		burstTime.append(execTime[i]+burstTime[i-1])
-	Label(f,text = "\n----- Revised -----\n").pack(anchor = W)
+	Label(f,text = "\n----- After Performing Shortest Run Time Next Scheduling Algorithm -----\n").pack(anchor = W)
+	Label(f,text = "Arrival Time:  "+ str(arrivalTime)).pack(anchor = W)
 	Label(f,text = "Process:  "+ str(process)).pack(anchor = W)
-	Label(f,text = "Burst Time:  "+ str(execTime)).pack(anchor = W)
+	Label(f,text = "Run Time:  "+ str(execTime)).pack(anchor = W)
+	# Label(f,text = "Burst Time:  "+ str(execTime)).pack(anchor = W)
 	Label(f,text = "Turn Around Time:  "+ str(burstTime)).pack(anchor = W)
 	destroy.pack()	
 
@@ -165,6 +178,7 @@ def rr():
 	f = Frame(root).pack()
 	Label(f,text = "\nRound Robin Schduling\n",font = ('Helveltika bold',12)).pack()
 	Label(f,text = "Arrival Time:  "+ str(arrivalTime)).pack(anchor = W)
+	Label(f,text = "Process:  "+ str(process)).pack(anchor = W)
 	Label(f,text = "Quantom:  "+ str(quantom)).pack(anchor = W)
 	Label(f,text = "Run Time:  "+ str(execTime)).pack(anchor = W)
 	flag = False
@@ -192,16 +206,52 @@ def rr():
 			burstTime[x] = cnt[x] + quantom
 		else :
 			burstTime[x] = cnt[x] + t
-	Label(f,text = "\n----- Revised -----\n").pack(anchor = W)
+	Label(f,text = "\n----- After Performing Round Robin Scheduling Algorithm -----\n").pack(anchor = W)
+	Label(f,text = "Arrival Time:  "+ str(arrivalTime)).pack(anchor = W)
 	Label(f,text = "Process:  "+ str(process)).pack(anchor = W)
-	Label(f,text = "Burst Time:  "+ str(execTime)).pack(anchor = W)
+	Label(f,text = "Quantom:  "+ str(quantom)).pack(anchor = W)
+	Label(f,text = "Run Time:  "+ str(execTime)).pack(anchor = W)
+	# Label(f,text = "Burst Time:  "+ str(execTime)).pack(anchor = W)
 	Label(f,text = "Turn Around Time:  "+ str(burstTime)).pack(anchor = W)
 	destroy.pack()	
 
 
 def ltr():
 	unpack_all()
-	return
+	n = random.randint(3,10)
+	arrivalTime = [i for i in range(n)]
+	execTime = [random.randint(1,10) for i in range(n)]
+	process = ['P'+str(i) for i in range(n)]
+	burstTime = [0 for _ in range(n)]
+	d = arrivalTime[:]
+	e = execTime[:]
+	execOrder = list()
+	f = Frame(root).pack()
+	Label(f,text = "\nLottery Schduling\n",font = ('Helveltika bold',12)).pack()
+	Label(f,text = "Arrival Time:  "+ str(arrivalTime)).pack(anchor = W)
+	Label(f,text = "Process:  "+ str(process)).pack(anchor = W)	
+	Label(f,text = "Run Time:  "+ str(execTime)).pack(anchor = W)
+	while len(d) > 0:
+		curr = random.randint(0,len(d)-1)
+		print curr 
+		print d
+		for i in d:
+			burstTime[i] += e[curr]
+		execOrder.append('P' +str(d[curr]))
+		del d[curr]
+		del e[curr]
+	print arrivalTime
+	print process
+	print execTime
+	print burstTime
+	print execOrder
+	Label(f,text = "\n----- After Performing Lottery Scheduling Algorithm -----\n").pack(anchor = W)
+	Label(f,text = "Arrival Time:  "+ str(arrivalTime)).pack(anchor = W)
+	Label(f,text = "Process:  "+ str(process)).pack(anchor = W)	
+	Label(f,text = "Run Time:  "+ str(execTime)).pack(anchor = W)
+	# Label(f,text = "Burst Time:  "+ str(execTime)).pack(anchor = W)
+	Label(f,text = "Turn Around Time:  "+ str(burstTime)).pack(anchor = W)
+	destroy.pack()	
 
 def mlq():
 	unpack_all()

@@ -162,18 +162,22 @@ def ltr():
 	process = ['P'+str(i) for i in range(n)]
 	burstTime = [0 for _ in range(n)]
 	d = arrivalTime[:]
+	e = execTime[:]
+	execOrder = list()
 	while len(d) > 0:
 		curr = random.randint(0,len(d)-1)
 		print curr 
 		print d
-		if curr in d:
-			for i in d:
-				burstTime[i] += execTime[i]
-			del d[curr]
+		for i in d:
+			burstTime[i] += e[curr]
+		execOrder.append('P' +str(d[curr]))
+		del d[curr]
+		del e[curr]
 	print arrivalTime
 	print process
 	print execTime
 	print burstTime
+	print execOrder
 
 if __name__ == '__main__':
 	ltr()
