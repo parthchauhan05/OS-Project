@@ -51,7 +51,7 @@ def app():
 		for i in range(len(waitTime)):
 			if waitTime[i] < 0:
 				waitTime[i] = 0
-		avg = sum(waitTime)/n
+		avg = sum(waitTime)/float(n)
 		Label(f,text = "\n----- After Performing First Come First Serve Scheduling Algorithm -----\n").pack(anchor = W)
 		Label(f,text = "Arrival Time:  "+ str(arrivalTime)).pack(anchor = W)
 		Label(f,text = "Process:  "+ str(process)).pack(anchor = W)
@@ -94,7 +94,7 @@ def app():
 		for i in range(len(waitTime)):
 			if waitTime[i] < 0:
 				waitTime[i] = 0
-		avg = sum(waitTime)/n
+		avg = sum(waitTime)/float(n)
 		Label(f,text = "\n----- After Performing Shortest Job Next Scheduling Algorithm -----\n").pack(anchor = W)
 		Label(f,text = "Arrival Time:  "+ str(arrivalTime)).pack(anchor = W)
 		Label(f,text = "Run Time:  "+ str(execTime)).pack(anchor = W)
@@ -144,7 +144,9 @@ def app():
 		for i in range(len(waitTime)):
 			if waitTime[i] < 0:
 				waitTime[i] = 0
-		avg = sum(waitTime)/n
+			if i != 0 :
+					waitTime[i] = burstTime[i]-execTime[i]-arrivalTime[i]
+		avg = sum(waitTime)/float(n)
 		Label(f,text = "\n----- After Performing Priority based Scheduling Algorithm -----\n").pack(anchor = W)
 		Label(f,text = "Arrival Time:  "+ str(arrivalTime)).pack(anchor = W)
 		Label(f,text = "Process:  "+ str(process)).pack(anchor = W)
@@ -188,7 +190,7 @@ def app():
 		for i in range(len(waitTime)):
 			if waitTime[i] < 0:
 				waitTime[i] = 0
-		avg = sum(waitTime)/n
+		avg = sum(waitTime)/float(n)
 		Label(f,text = "\n----- After Performing Shortest Run Time Next Scheduling Algorithm -----\n").pack(anchor = W)
 		Label(f,text = "Arrival Time:  "+ str(arrivalTime)).pack(anchor = W)
 		Label(f,text = "Process:  "+ str(process)).pack(anchor = W)
@@ -247,7 +249,7 @@ def app():
 		for i in range(len(waitTime)):
 			if waitTime[i] < 0:
 				waitTime[i] = 0
-		avg = sum(waitTime)/n
+		avg = sum(waitTime)/float(n)
 		Label(f,text = "\n----- After Performing Round Robin Scheduling Algorithm -----\n").pack(anchor = W)
 		Label(f,text = "Arrival Time:  "+ str(arrivalTime)).pack(anchor = W)
 		Label(f,text = "Process:  "+ str(process)).pack(anchor = W)
@@ -287,7 +289,7 @@ def app():
 		for i in range(len(waitTime)):
 			if waitTime[i] < 0:
 				waitTime[i] = 0
-		avg = sum(waitTime)/n
+		avg = sum(waitTime)/float(n)
 		Label(f,text = "\n----- After Performing Lottery Scheduling Algorithm -----\n").pack(anchor = W)
 		Label(f,text = "Arrival Time:  "+ str(arrivalTime)).pack(anchor = W)
 		Label(f,text = "Process:  "+ str(process)).pack(anchor = W)	
@@ -301,16 +303,16 @@ def app():
 
 	def mlq():
 		unpack_all()
-		n = random.randint(3,10)
-		arrivalTime1 = [i for i in range(n)]
-		execTime1 = [random.randint(1,10) for i in range(n)]
-		process1 = ['P'+str(i) for i in range(n)]
-		burstTime1 = [0 for _ in range(n)]
-		n = random.randint(3,10)
-		arrivalTime2 = [i for i in range(n)]
-		execTime2 = [random.randint(1,10) for i in range(n)]
-		process2 = ['P'+str(i) for i in range(n)]
-		burstTime2 = [0 for _ in range(n)]
+		n1 = random.randint(3,10)
+		arrivalTime1 = [i for i in range(n1)]
+		execTime1 = [random.randint(1,10) for i in range(n1)]
+		process1 = ['P'+str(i) for i in range(n1)]
+		burstTime1 = [0 for _ in range(n1)]
+		n2 = random.randint(3,10)
+		arrivalTime2 = [i for i in range(n2)]
+		execTime2 = [random.randint(1,10) for i in range(n2)]
+		process2 = ['P'+str(i) for i in range(n2)]
+		burstTime2 = [0 for _ in range(n2)]
 		d1 = arrivalTime1[:]
 		e1 = execTime1[:]
 		d2 = arrivalTime2[:]
@@ -338,16 +340,16 @@ def app():
 					burstTime2[i] += e2[0]
 				del d2[0]
 				del e2[0]
-		waitTime1 = [burstTime1[i]-arrivalTime1[i]-execTime1[i] for i in range(n)]
+		waitTime1 = [burstTime1[i]-arrivalTime1[i]-execTime1[i] for i in range(n1)]
 		for i in range(len(waitTime1)):
 			if waitTime1[i] < 0:
 				waitTime1[i] = 0
-		waitTime2 = [burstTime2[i]-arrivalTime2[i]-execTime2[i] for i in range(n)]
+		waitTime2 = [burstTime2[i]-arrivalTime2[i]-execTime2[i] for i in range(n2)]
 		for i in range(len(waitTime2)):
 			if waitTime2[i] < 0:
 				waitTime2[i] = 0
-		avg1 = sum(waitTime1)/len(waitTime1)
-		avg2 = sum(waitTime2)/len(waitTime2)
+		avg1 = sum(waitTime1)/float(len(waitTime1))
+		avg2 = sum(waitTime2)/float(len(waitTime2))
 		Label(f,text = "\n----- After Performing First Come First Serve Scheduling Algorithm -----\n").pack(anchor = W)
 		Label(f,text = "Arrival Time of CPU-bound Processes:  "+ str(arrivalTime1)).pack(anchor = W)
 		Label(f,text = "Process of CPU-bound Processes:  "+ str(process1)).pack(anchor = W)
@@ -362,9 +364,7 @@ def app():
 		Label(f,text = "Wait Time of I/O-bound Processes:  "+ str(waitTime2)).pack(anchor = W)
 		Label(f,text = "Average Wait Time: "+ str(avg2)).pack(anchor = W)
 		runOther.pack(padx = 120, side = LEFT)
-		destroy.pack(padx = 10, side = LEFT)	
-		return
-
+		destroy.pack(padx = 10, side = LEFT)
 
 	root = Tk()
 	root.title("Process Scheduling")

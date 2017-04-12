@@ -179,5 +179,46 @@ def ltr():
 	print burstTime
 	print execOrder
 
+def mlq():
+	n1 = random.randint(3,10)
+	arrivalTime1 = [i for i in range(n1)]
+	execTime1 = [random.randint(1,10) for i in range(n1)]
+	process1 = ['P'+str(i) for i in range(n1)]
+	burstTime1 = [0 for _ in range(n1)]
+	n2 = random.randint(3,10)
+	arrivalTime2 = [i for i in range(n2)]
+	execTime2 = [random.randint(1,10) for i in range(n2)]
+	process2 = ['P'+str(i) for i in range(n2)]
+	burstTime2 = [0 for _ in range(n2)]
+	d1 = arrivalTime1[:]
+	e1 = execTime1[:]
+	d2 = arrivalTime2[:]
+	e2 = execTime2[:]
+	while len(d1)>0 or len(d2)>0:
+		if len(d1) > 0:
+			for i in d1:
+				burstTime1[i] += e1[0]
+			for i in d2:
+				burstTime2[i] += e1[0]
+			del d1[0]
+			del e1[0]
+		if len(d2) > 0:
+			for i in d1:
+				burstTime1[i] += e2[0]
+			for i in d2:
+				burstTime2[i] += e2[0]
+			del d2[0]
+			del e2[0]
+	waitTime1 = [burstTime1[i]-arrivalTime1[i]-execTime1[i] for i in range(n1)]
+	for i in range(len(waitTime1)):
+		if waitTime1[i] < 0:
+			waitTime1[i] = 0
+	waitTime2 = [burstTime2[i]-arrivalTime2[i]-execTime2[i] for i in range(n2)]
+	for i in range(len(waitTime2)):
+		if waitTime2[i] < 0:
+			waitTime2[i] = 0
+	avg1 = sum(waitTime1)/float(len(waitTime1))
+	avg2 = sum(waitTime2)/float(len(waitTime2))
+	
 if __name__ == '__main__':
 	ltr()
